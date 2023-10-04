@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  mysql: 
+    image: mysql:5
+    environment:
+      - MYSQL_DATABASE=fitconnect-api
+      - MYSQL_USER=fitconnect
+      - MYSQL_ROOT_PASSWORD=fitconnect
+      - MYSQL_PORT=3306
+      - MYSQL_PASSWORD=fitconnect
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - MYSQL_USER=fitconnect
+      - MYSQL_ROOT_PASSWORD=fitconnect
+      - MYSQL_PASSWORD=fitconnect
+    ports:
+      - 8080:80
